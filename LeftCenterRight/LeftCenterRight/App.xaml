@@ -1,0 +1,62 @@
+﻿<Application x:Class="LeftCenterRight.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:LeftCenterRight"
+             xmlns:view="clr-namespace:LeftCenterRight.View"
+             xmlns:viewmodel="clr-namespace:LeftCenterRight.ViewModel"
+             xmlns:datamodel="clr-namespace:LeftCenterRight.DataModel"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <DataTemplate DataType="{x:Type viewmodel:MainViewModel}">
+            <view:MainView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:SimulatorInputViewModel}">
+            <view:SimulatorInputView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:ChartViewModel}">
+            <view:ChartView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:PlayerViewModel}">
+            <view:PlayerView/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PlayerGamePreset">
+            <TextBlock Text="{Binding}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="axisTitle">
+            <TextBlock Text="{Binding}"
+                   Foreground="Black" 
+                   FontFamily="SegoeUI"
+                   FontStyle="Italic" 
+                   FontSize="55" 
+                   FontWeight="Medium" 
+                   FontStretch="Normal">
+            </TextBlock>
+        </DataTemplate>
+
+        <Style TargetType="{x:Type TextBox}" x:Key="textboxError">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type Label}" x:Key="MenuLabel">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+        <Style TargetType="{x:Type StackPanel}" x:Key="MenuItem">
+            <Setter Property="Margin" Value="0,0,0,15"/>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="MenuButton">
+            <Setter Property="MinHeight" Value="50"/>
+            <Setter Property="MinWidth" Value="75"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+    </Application.Resources>
+</Application>
